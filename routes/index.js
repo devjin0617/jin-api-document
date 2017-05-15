@@ -1,15 +1,24 @@
-var express = require('express');
-var router = express.Router();
-var request = require('request');
+const express = require('express')
+const router = express.Router()
+const request = require('request')
 
-router.use('/api', function (req, res) {
+router.use('/api', (req, res) => {
 
-    // req.pipe(request(options)).pipe(res);
-});
+  const API_URL = ''
+
+  let options = {
+    method: req.method,
+    url: API_URL + req.url,
+    json: req.body
+  }
+
+  req.pipe(request(options)).pipe(res)
+
+})
 
 /* GET home page. */
-router.get('/:key?', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/:key?', (req, res) => {
+  res.render('index', { title: 'Express' })
+})
 
-module.exports = router;
+module.exports = router
